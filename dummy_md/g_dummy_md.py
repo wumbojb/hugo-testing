@@ -96,7 +96,7 @@ def generate_paragraph(current_slug, all_slugs):
         (0.15, generate_table),
         (0.2, generate_blockquote),
         (0.25, generate_inline_link),
-        (20, lambda: f"[[{random.choice([s for s in all_slugs if s != current_slug])}]]" if len(all_slugs) > 1 else "")
+        (50, lambda: f"[[{random.choice([s for s in all_slugs if s != current_slug])}]]" if len(all_slugs) > 1 else "")
     ]
     for prob, func in elements:
         if random.random() < prob:

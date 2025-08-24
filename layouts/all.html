@@ -5,6 +5,11 @@
   {{ partial "head/sass.html" . }}
 </head>
 <body>
+  <style>
+    .broken-link{
+      color: red;
+    }
+  </style>
   <div class="mobile-header">
     <a href="{{ site.BaseURL | relURL }}" class="mobile-header__title">{{ site.Title }}</a>
     <button data-sidebar="sidebar" class="mobile-header__btn">

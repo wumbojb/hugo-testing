@@ -1,4 +1,4 @@
-baseURL: https://masputrawae.github.io/
+baseURL: https://masputrawae.github.io/hugo-testing/
 title: My Notes
 languageCode: id
 defaultContentLanguage: id
@@ -76,17 +76,17 @@ params:
       weight: 10
       items:
         - name: Main Page
-          url: /
+          url: ""
           weight: 10
         - name: Recent Change
-          url: /recent-change/
+          url: recent-change/
           weight: 20
         - name: Random Page
-          url: /random-page.html
+          url: random-page.html
           script: true
           weight: 30
         - name: Tags
-          url: /tags/
+          url: tags/
           weight: 40
 
     - label: "Social Media"
@@ -156,7 +156,7 @@ module:
       target: content
     - source: dummy
       target: content
-    - source: menus
+    - source: notes
       target: content
     - source: content
       target: content

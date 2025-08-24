@@ -60,7 +60,7 @@ def generate_zettel_content(current_id, all_ids):
     return "\n\n".join(content_elements)
 
 # --- GENERATE ZETTELKASTEN NOTES ---
-total_notes = 500  # Jumlah catatan zettelkasten
+total_notes = 5  # Jumlah catatan zettelkasten
 all_note_ids = []
 
 # Generate ID unik untuk setiap catatan
@@ -89,7 +89,7 @@ for i, note_id in enumerate(all_note_ids):
     # Tautan terkait (beberapa catatan acak)
     related_notes = []
     if len(all_note_ids) > 5:
-        related_notes = random.sample([id for id in all_note_ids if id != note_id], k=random.randint(2, 4))
+        related_notes = random.sample([id for id in all_note_ids if id != note_id], k=random.randint(6, 10))
     
     # Write markdown
     filename = f"{content_dir}/{note_id}.md"
