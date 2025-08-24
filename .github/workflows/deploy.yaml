@@ -75,14 +75,19 @@ jobs:
       #   run: python3 index_generator.py
       #====================
 
-      
       #==================== TESTING ONLY
-      # - name: Generate Dummy MD
-      #   run: python3 dummy_md/g_dummy_md.py
+      - name: Generate Dummy MD
+        run: python3 dummy_md/g_dummy_md.py
       #====================
+      
       #==================== TESTING ONLY
       - name: Generate Dummy MD
         run: python3 dummy_md/zettel_dummy.py
+      #====================
+      
+      #==================== TESTING ONLY
+      - name: Convert wikilink
+        run: ./wikilink-converter
       #====================
 
       - name: Build with Hugo

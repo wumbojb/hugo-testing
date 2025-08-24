@@ -104,7 +104,7 @@ def generate_paragraph(current_slug, all_slugs):
     return "\n\n".join(para)
 
 # --- GENERATE POSTS ---
-total_posts = 10000
+total_posts = 50000
 all_slugs = []
 
 for i in range(1, total_posts+1):
