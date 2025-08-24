@@ -1,0 +1,17 @@
+{{- $regularPages := where site.RegularPages "Lang" site.Language.Lang -}}
+{{- $sections := where site.Sections "Lang" site.Language.Lang -}}
+{{- $allPages := union $regularPages $sections -}}
+
+{{- $wikilinks := dict -}}
+{{- range $allPages }}
+  {{- if .File }}
+    {{- $slug := .File.BaseFileName -}}
+    {{- $wikilinks = merge $wikilinks (dict $slug .) -}}
+    {{- $wikilinks = merge $wikilinks (dict .File.TranslationBaseName .) -}}
+    {{- range .Aliases }}
+      {{- $wikilinks = merge $wikilinks (dict . $) -}}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- return $wikilinks -}}

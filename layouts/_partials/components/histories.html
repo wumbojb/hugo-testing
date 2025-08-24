@@ -1,0 +1,54 @@
+<aside id="tabHistories" class="tab-pane">
+  {{ $title := .Title }}
+  {{ $rootPath := .Params.rootPath | default "content" }}
+  {{ $repo := site.Params.ghrepo | default "user/repo" }}
+
+  {{ with .GitInfo }}
+    <h1>Revision History Of: "{{ $title }}"</h1>
+
+    {{ $allCommits := slice . | append .Ancestors }}
+    {{ $filePath := $.Page.File.Path }}
+
+    {{ if hugo.IsMultilingual }}
+      {{ $filePath = printf "%s/%s" $.Page.Lang $filePath }}
+    {{ end }}
+
+    <div class="table-container">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Author</th>
+            <th>Subject</th>
+            <th>Commit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range $allCommits }}
+            <tr>
+              <td>
+                <time datetime="{{ .CommitDate.Format "2006-01-02T15:04:05Z07:00" }}">
+                  {{ .CommitDate.Format "2006-01-02" }}
+                </time>
+              </td>
+              <td>{{ .AuthorName }}</td>
+              <td>{{ .Subject }}</td>
+              <td>
+                <a 
+                  href="https://github.com/{{ $repo }}/blob/{{ .Hash }}/{{ $rootPath }}/{{ $filePath }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ substr .Hash 0 7 }}
+                </a>
+              </td>
+            </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  {{ else }}
+    <h1>Histories Not Found On: "{{ $title }}"</h1>
+  {{ end }}
+</aside>

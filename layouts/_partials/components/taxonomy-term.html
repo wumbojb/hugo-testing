@@ -1,0 +1,41 @@
+{{ if in (slice "taxonomy" "term") .Kind }}
+  {{ if eq .Kind "taxonomy" }}
+    <ul>
+      {{ range .Data.Terms.Alphabetical }}
+        <li>
+          <a href="{{ .Page.RelPermalink }}">{{ .Term }} ({{ .Count }})</a>
+        </li>
+      {{ end }}
+    </ul>
+  {{ else if eq .Kind "term" }}
+    <div class="table-container">
+      <table class="recent-changes-table">
+        <thead>
+          <tr>
+            <th>Judul</th>
+            <th>Tanggal</th>
+            <th>Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range .Pages.ByDate.Reverse }}
+            <tr>
+              <td data-label="Judul">
+                <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+              </td>
+              <td data-label="Tanggal">{{ .Date.Format "2006/01/02" }}</td>
+              <td data-label="Author">
+                {{ with .GitInfo }}
+                  {{ .AuthorName }}
+                {{ else }}
+                  -
+                {{ end }}
+              </td>
+            </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  {{ end }}
+
+{{ end }}

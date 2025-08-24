@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  {{ partial "head/meta.html" . }}
+  {{ partial "head/sass.html" . }}
+</head>
+<body>
+  <div class="mobile-header">
+    <a href="{{ site.BaseURL | relURL }}" class="mobile-header__title">{{ site.Title }}</a>
+    <button data-sidebar="sidebar" class="mobile-header__btn">
+      {{ partial "components/icon" (dict "name" "list") }}
+    </button>
+  </div>
+  
+  {{ partial "header.html" . }}
+  <main class="markdown main-content">
+    <article id="tabContent" class="tab-pane tab-pane--active">
+      <h1>{{ .Title }}</h1>
+      {{ partial "components/markdown.html" . }}
+      {{ partial "components/recent-change.html" . }}
+      {{ partial "components/taxonomy-term.html" . }}
+    </article>
+
+    <aside id="tabDiscussion" class="tab-pane">
+      {{ if .Params.discussion | default site.Params.defaultDiscussion | default false }}
+        {{ $gi := site.Params.giscusConfig }}
+        <h1>Talk In: {{ .Title }}</h1>
+        <div
+          class="discussion"
+          data-repo="{{- $gi.dataRepo -}}"
+          data-repo-id="{{- $gi.dataRepoId -}}"
+          data-category="{{- $gi.dataCategory -}}"
+          data-category-id="{{- $gi.dataCategoryId -}}"
+          data-mapping="{{- $gi.dataMapping -}}"
+          data-strict="{{- $gi.dataStrict -}}"
+          data-reactions-enabled="{{- $gi.dataReactionsEnabled -}}"
+          data-emit-metadata="{{- $gi.dataEmitMetadata -}}"
+          data-input-position="{{- $gi.dataInputPosition -}}"
+          data-lang="{{- site.Params.giscusLang | default site.Language.LanguageCode | default "en" -}}"
+        ></div>
+      {{ else }}
+        <h1>Discussion Disable in: {{ .Title }}</h1>
+      {{ end }}
+    </aside>
+
+    {{ partial "components/histories.html" . }}
+    {{ partial "footer.html" . }}
+  </main>
+  {{ partial "head/js.html" . }}
+</body>
+</html>

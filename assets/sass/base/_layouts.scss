@@ -1,0 +1,139 @@
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+
+.mobile-header {
+  @include m.flex-justify(space-between, center);
+  height: 3rem;
+  padding-inline: 1rem;
+  border-bottom: 1px solid var(--base-border);
+  position: sticky;
+  top: 0;
+  background-color: var(--second-bg);
+  z-index: 50;
+
+  &__title {
+    font-size: v.$fs-6xl;
+    font-weight: 700;
+  }
+
+  &__btn {
+    .icon {
+      @include m.size(v.$fs-5xl);
+      color: var(--second-color);
+    }
+  }
+}
+
+.sidebar {
+  @include m.custom-scrollbar(var(--base-border), var(--primary));
+  position: fixed;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  max-width: 200px;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--second-bg);
+  padding: 1rem;
+  border-inline-end: 1px solid var(--base-border);
+  z-index: 100;
+  display: none;
+
+  [data-sidebar="sidebar"] {
+    position: absolute;
+    inset-inline-end: 1rem;
+    inset-block-start: 1rem;
+    .icon {
+      @include m.size(v.$fs-5xl);
+      color: var(--second-color);
+    }
+  }
+
+  &--active {
+    display: block;
+  }
+}
+
+.nav {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    list-style: none;
+    font-weight: 600;
+    color: var(--third-color);
+    border-bottom: 1px solid var(--base-border);
+    margin-block: 1rem 0.25rem;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    width: 100%;
+    text-align: start;
+    font-size: v.$fs-sm;
+    padding: 0.1 0rem;
+    margin-left: 0.5rem;
+    color: var(--primary);
+
+    &--checkbox {
+      @include m.flex-justify(start, center);
+      gap: 0.5rem;
+      margin-block: 0.5rem;
+
+      input[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--base-border);
+        border-radius: 50%;
+        background-color: var(--base-bg);
+        cursor: pointer;
+
+        &:checked {
+          background-color: var(--success);
+          border-color: var(--success-border);
+        }
+      }
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  &__img {
+    @include m.size(100px);
+  }
+
+  &__title {
+    color: var(--second-color);
+    font-size: v.$fs-3xl;
+    font-style: normal;
+  }
+}
+
+.search-bar {
+  margin-block: 1rem;
+
+  &__input {
+    width: 100%;
+    border: 1px solid var(--base-border);
+    outline: none;
+    padding: 0.1rem 0.25rem;
+    border-radius: 0.25rem;
+    background-color: var(--base-bg);
+  }
+}
+
+.main-content {
+  padding: 1.5rem;
+}

@@ -1,0 +1,12 @@
+[
+    {{- range where .Site.Pages "Kind" "page" -}}
+    {
+        "id": "{{ .Params.id | default .Permalink }}",
+        "title": "{{ .Title }}",
+		    "description": {{ .Description | default .Params.description | default .Summary | truncate 160 | plainify | jsonify }},
+        "url": "{{ .RelPermalink }}",
+        "tags": [{{ range $index, $tag := .Params.Tags }}{{ if $index }}, {{ end }}"{{ $tag }}"{{ end }}],
+        "date": "{{ .Date.Format "2006-01-02" }}"
+    }{{- if not (eq .Permalink (index (where .Site.Pages "Kind" "page") (sub (len (where .Site.Pages "Kind" "page")) 1) ).Permalink) -}},{{ end }}
+    {{- end -}}
+]

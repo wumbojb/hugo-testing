@@ -1,0 +1,97 @@
+<nav class="sidebar" id="sidebar">
+  <a href="{{ site.BaseURL | relURL }}" class="logo">
+    <img src="{{ site.Params.logo | relURL }}" alt="Logo {{ site.Title }}" class="logo__img">
+    <em class="logo__title">{{ site.Title }}</em>
+  </a>
+  <button data-sidebar="sidebar">
+    {{ partial "components/icon" (dict "name" "x") }}
+  </button>
+  
+  {{ partial "components/search.html" . }}
+
+  {{ with site.Params.menus }}
+    {{ range sort . "weight" }}
+      <details class="nav" open>
+        <summary class="nav__label">{{ .label }}</summary>
+        {{ range sort .items "weight" }}
+        <a href="{{ .url | relURL }}" class="nav__link">{{ .name }}</a>
+        {{ end }}
+      </details>
+    {{ end }}
+  {{ end }}
+
+  {{ $discFalse := (not (.Params.discussion | default site.Params.defaultDiscussion | default true)) }}
+  {{ $discClass := "" }}
+  {{ if $discFalse }}
+    {{ $discClass = "tab-btn--disable" }}
+  {{ end }}
+
+  <details class="nav" open>
+    <summary class="nav__label">Content</summary>
+    <button data-tab-target="tabContent" class="nav__link">Page</button>
+    <button data-tab-target="tabDiscussion" class="nav__link{{ $discClass }}">Discussion</button>
+    <button data-tab-target="tabHistories" class="nav__link{{ with .GitInfo }} {{ else }} {{ $discClass }}{{ end }}">View History</button>
+    
+    {{ $repo := site.Params.ghrepo }}
+    {{ $branch := site.Params.branch }}
+    {{ $rootPath := .Params.rootPath | default "content" }}
+
+    {{ if .Params.editPage | default site.Params.defaultEditPage | default true }}
+      {{ with .File }}
+        <a href="https://github.com/{{- $repo -}}/blob/{{- $branch -}}/{{ $rootPath }}/{{- .Path -}}?plain=1" class="nav__link tab-btn">
+          View Source
+        </a>
+        <a href="https://github.com/{{- $repo -}}/edit/{{- $branch -}}/{{ $rootPath }}/{{- .Path -}}?plain=1" class="nav__link tab-btn">
+          Edit Page
+        </a>
+      {{ else }}
+        <button class="nav__link tab-btn tab-btn--disable" title="Source Not Found">
+          View Source
+        </button>
+        <button class="nav__link tab-btn tab-btn--disable" title="File Not Found">
+          Edit Page
+        </button>
+      {{ end }}
+    {{ else }}
+      <button class="nav__link tab-btn tab-btn--disable" title="Disable View Source">
+        View Source
+      </button>
+      <button class="nav__link tab-btn tab-btn--disable" title="Disable Edit Page">
+        Edit Page
+      </button>
+    {{ end }}
+
+  </details>
+
+  <details class="nav" open>
+    <summary class="nav__label">Themes</summary>
+    <label class="nav__link nav__link--checkbox">
+      <input type="checkbox" name="autoSystem" id="autoSystem">
+      <span>Auto System</span>
+    </label>
+    <label class="nav__link nav__link--checkbox">
+      <input type="checkbox" name="lightTheme" id="lightTheme">
+      <span>Light</span>
+    </label>
+    <label class="nav__link nav__link--checkbox">
+      <input type="checkbox" name="darkTheme" id="darkTheme">
+      <span>Dark</span>
+    </label>
+  </details>
+
+  <details class="nav" open>
+    <summary class="nav__label">Font Size</summary>
+    <label class="nav__link nav__link--checkbox">
+      <input type="checkbox" name="fsSmall" id="fsSmall">
+      <span>Small</span>
+    </label>
+    <label class="nav__link nav__link--checkbox">
+      <input type="checkbox" name="fsDefault" id="fsDefault">
+      <span>Default</span>
+    </label>
+    <label class="nav__link nav__link--checkbox">
+      <input type="checkbox" name="fsLarge" id="fsLarge">
+      <span>Large</span>
+    </label>
+  </details>
+</nav>

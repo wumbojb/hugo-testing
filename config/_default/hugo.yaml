@@ -1,0 +1,162 @@
+baseURL: https://masputrawae.github.io/gaspol/
+title: My Notes
+languageCode: id
+defaultContentLanguage: id
+enableGitInfo: true
+
+pagination:
+  disableAliases: false
+  pagerSize: 20
+  path: page
+
+#===================
+# PARAMS SETTING
+#===================
+params:
+  #===================
+  # BASE SETTING
+  #===================
+  author: Putra Jaya
+  logo: assets/images/logo.png
+  
+  defaultToc: true
+  defaultDiscussion: true
+  defaultEditPage: true
+
+  ghrepo: masputrawae/masputrawae.github.io
+  branch: main
+
+  #===================
+  # GISCUS SETTING
+  #===================
+  giscusConfig:
+    dataRepo: "masputrawae/masputrawae.github.io"
+    dataRepoId: "R_kgDOPTix1Q"
+    dataCategory: "General"
+    dataCategoryId: "DIC_kwDOPTix1c4Ctd3E"
+    dataMapping: "og:title"
+    dataStrict: 1
+    dataReactionsEnabled: 1
+    dataEmitMetadata: 1
+    dataInputPosition: "top"
+
+  #===================
+  # FAVICONS SETTING
+  #===================
+  favicons:
+    - rel: icon
+      type: image/x-icon
+      href: assets/favicons/favicon.ico
+    - rel: apple-touch-icon
+      type: image/png
+      size: 180x180
+      href: assets/favicons/apple-touch-icon.png
+    - rel: icon
+      type: image/png
+      size: 32x32
+      href: assets/favicons/favicon-32x32.png
+    - rel: icon
+      type: image/png
+      size: 16x16
+      href: assets/favicons/favicon-16x16.png
+    - rel: icon
+      type: image/png
+      size: 192x192
+      href: assets/favicons/android-chrome-192x192.png
+    - rel: icon
+      type: image/png
+      size: 512x512
+      href: assets/favicons/android-chrome-512x512.png
+
+  #===================
+  # MENUS SETTING
+  #===================
+  menus:
+    - label: "Main Menu"
+      weight: 10
+      items:
+        - name: Main Page
+          url: /
+          weight: 10
+        - name: Recent Change
+          url: /recent-change/
+          weight: 20
+        - name: Random Page
+          url: /random-page.html
+          script: true
+          weight: 30
+        - name: Tags
+          url: /tags/
+          weight: 40
+
+    - label: "Social Media"
+      weight: 20
+      items:
+        - name: Twitter X
+          url: https://example.com/
+          weight: 10
+        - name: Instagram
+          url: https://example.com/
+          weight: 20
+        - name: Facebook
+          url: https://example.com/
+          weight: 30
+        - name: Discord
+          url: https://example.com/
+          weight: 40
+        - name: Github
+          url: https://example.com/
+          weight: 50
+
+#===================
+# OUTPUT SETTING
+#===================
+
+mediaType: 'application/json'
+
+# ===!You don't need to change this. It's required for site search functionality.===
+outputFormats:
+  search:
+    mediaType: 'application/json'
+    baseName: 'search'
+    isPlainText: true
+    notAlternative: true
+
+  # manifest:
+  #   mediaType            : 'application/json'
+  #   baseName             : 'manifest'
+  #   isPlainText          : true
+  #   notAlternative       : true
+
+  random-page:
+    mediaType            : 'text/html'
+    baseName             : 'random-page'
+    isPlainText          : true
+    notAlternative       : true
+
+outputs:
+  home:
+    - html
+    - rss
+    - sitemap
+    - random-page
+    - search
+    # - manifest
+
+#===================
+# MODULE SETTING
+#===================
+module:
+  hugoVersion:
+    extended: true
+    min: "0.148.1"
+  mounts:
+    - excludeFiles: templates/*
+      source: content
+      target: content
+    - source: dummy
+      target: content
+    - source: menus
+      target: content
+    - source: content
+      target: content

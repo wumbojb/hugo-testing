@@ -1,0 +1,33 @@
+{{ if .Params.recentChangePage }}
+  {{ $pages := site.RegularPages }}
+  {{ $paginator := .Paginate ($pages.ByDate.Reverse) 20 }}
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Judul</th>
+          <th>Tanggal</th>
+          <th>Author</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $paginator.Pages }}
+          <tr>
+            <td data-label="Judul">
+              <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            </td>
+            <td data-label="Tanggal">{{ .Lastmod.Format "2006/01/02" }}</td>
+            <td data-label="Author">
+              {{ with .GitInfo }}
+                {{ .AuthorName }}
+              {{ else }}
+                -
+              {{ end }}
+            </td>
+          </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+  {{ partial "pagination.html" . }}
+{{ end }}

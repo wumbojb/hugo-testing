@@ -1,0 +1,30 @@
+{
+  "name": "semangat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masputrawae/lumora.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/masputrawae/lumora/issues"
+  },
+  "homepage": "https://github.com/masputrawae/lumora#readme",
+  "dependencies": {
+    "@floating-ui/dom": "^1.7.2",
+    "bootstrap-icons": "^1.13.1",
+    "fuse.js": "^7.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-go-template": "^0.0.15"
+  }
+}
