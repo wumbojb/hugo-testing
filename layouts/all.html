@@ -16,7 +16,7 @@
   <main class="markdown main-content">
     <article id="tabContent" class="tab-pane tab-pane--active">
       <h1>{{ .Title }}</h1>
-      {{ partial "components/markdown.html" . }}
+      {{ .Content }}
       {{ partial "components/recent-change.html" . }}
       {{ partial "components/taxonomy-term.html" . }}
     </article>
