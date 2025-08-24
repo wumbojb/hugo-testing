@@ -24,7 +24,7 @@ tags = load_yaml("./dummy_md/placeholders/tags.yaml")
 lorem_paragraphs = load_yaml("./dummy_md/placeholders/lorem_paragraphs.yaml")
 lorem_descriptions = load_yaml("./dummy_md/placeholders/lorem_description.yaml")
 
-content_dir = "content/zettelkasten"
+content_dir = "notes/zettelkasten"
 os.makedirs(content_dir, exist_ok=True)
 
 # --- HELPER FUNCTIONS ---
@@ -60,7 +60,7 @@ def generate_zettel_content(current_id, all_ids):
     return "\n\n".join(content_elements)
 
 # --- GENERATE ZETTELKASTEN NOTES ---
-total_notes = 10000  # Jumlah catatan zettelkasten
+total_notes = 15  # Jumlah catatan zettelkasten
 all_note_ids = []
 
 # Generate ID unik untuk setiap catatan

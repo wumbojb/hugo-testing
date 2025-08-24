@@ -1,0 +1,12 @@
+dry_run: false
+verbose: true
+workers: 2
+extensions:
+  - .md
+  - .markdown
+exclude_dirs:
+  - .git
+  - node_modules
+  - vendor
+  - .obsidian
+  - .github
