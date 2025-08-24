@@ -60,7 +60,7 @@ def generate_zettel_content(current_id, all_ids):
     return "\n\n".join(content_elements)
 
 # --- GENERATE ZETTELKASTEN NOTES ---
-total_notes = 5  # Jumlah catatan zettelkasten
+total_notes = 10000  # Jumlah catatan zettelkasten
 all_note_ids = []
 
 # Generate ID unik untuk setiap catatan
